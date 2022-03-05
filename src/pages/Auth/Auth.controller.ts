@@ -5,9 +5,9 @@ enum AuthModeEnum {
   SIGN_UP = "sign_up"
 } 
 
-function AuthController($scope, $location, $window) {
+function AuthController($scope, $location, $rootScope) {
   this.$onInit = function() {
-    console.log('object1');
+    if ($rootScope.token) $location.path('/uploads')
   }
   
   $scope.mode = AuthModeEnum.SIGN_IN
@@ -20,18 +20,20 @@ function AuthController($scope, $location, $window) {
   }
 
   $scope.signIn = async () => {
+    // console.log($rootScope.token);
     try {
       await login({
         username: $scope.username,
         password: $scope.password
       })
-      $window.location.href = '#/uploads'
+      $location.path('/uploads')
     } catch (e) {
       console.error(e);
     }
   }
 
   $scope.signUp = async () => {
+    if ($scope.password !== $scope.confirmPassword) return 
     try {
       await register({
         username: $scope.username,
@@ -41,7 +43,7 @@ function AuthController($scope, $location, $window) {
         username: $scope.username,
         password: $scope.password
       })
-      $window.location.href = '#/uploads'
+      $location.path('/uploads')
     } catch (e) {
       console.error(e);
     }
