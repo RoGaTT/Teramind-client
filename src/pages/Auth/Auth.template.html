@@ -13,13 +13,13 @@
   >
 
   <button ng-show="mode === 'sign_in'" ng-click="signIn()">Sign In</button>
-  <p ng-show="mode === 'sign_in'" ng-click="auth()">
+  <p ng-show="mode === 'sign_in'">
     There is no account yet?
     <button ng-click="toggleMode()">Sign up</button>
   </p>
 
   <button ng-show="mode === 'sign_up'" ng-click="signUp()">Sign Up</button>
-  <p ng-show="mode === 'sign_up'" ng-click="auth()">
+  <p ng-show="mode === 'sign_up'">
     Already have an account?
     <button ng-click="toggleMode()">Sign in</button>
   </p>

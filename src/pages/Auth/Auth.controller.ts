@@ -5,7 +5,7 @@ enum AuthModeEnum {
   SIGN_UP = "sign_up"
 } 
 
-function AuthController($scope, $location, $rootScope, $cookies) {
+function AuthController($scope, $location, $rootScope, $cookies, $q) {
   this.$onInit = function() {
     if ($rootScope.token) $location.path('/uploads')
     $scope.mode = AuthModeEnum.SIGN_IN;
@@ -20,11 +20,15 @@ function AuthController($scope, $location, $rootScope, $cookies) {
 
   $scope.signIn = async () => {
     try {
-      const res = await login({
-        username: $scope.username,
-        password: $scope.password
+      const $login = $q((resolve) => {
+        login({
+          username: $scope.username,
+          password: $scope.password
+        }).then(resolve)
       })
-      $rootScope.token = res.data.token
+      $login.then((res) => {
+        $rootScope.token = res.data.token
+      })
     } catch (e) {
       console.error(e);
     }
@@ -34,15 +38,24 @@ function AuthController($scope, $location, $rootScope, $cookies) {
     console.log($scope.confirmPassword);
     if ($scope.password !== $scope.confirmPassword) return 
     try {
-      await register({
-        username: $scope.username,
-        password: $scope.password
+      const $register = $q((resolve) => {
+        register({
+          username: $scope.username,
+          password: $scope.password
+        }).then(resolve)
       })
-      await login({
-        username: $scope.username,
-        password: $scope.password
+      $register.then((res) => {
+        $rootScope.token = res.data.token
+        const $login = $q((resolve) => {
+          login({
+            username: $scope.username,
+            password: $scope.password
+          }).then(resolve)
+        })
+        $login.then((res) => {
+          $rootScope.token = res.data.token
+        })
       })
-      $location.path('/uploads')
     } catch (e) {
       console.error(e);
     }
