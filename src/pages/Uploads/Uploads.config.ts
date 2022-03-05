@@ -3,6 +3,7 @@ function UploadsConfig($routeProvider) {
     templateUrl: 'src/pages/Uploads/Uploads.template.html',
     controller: 'UploadsController'
   });
+  console.log(document.cookie);
 }
 
 export default UploadsConfig
