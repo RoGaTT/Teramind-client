@@ -8,7 +8,7 @@ const UploadsModule = angular.module('app.uploads', ['ngRoute'])
 
 UploadsModule.config(['$routeProvider', UploadsConfig])
 
-UploadsModule.controller('UploadsController', ["$scope", UploadsController])
+UploadsModule.controller('UploadsController', [UploadsController])
 
 
 export default UploadsModule;
