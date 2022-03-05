@@ -6,13 +6,13 @@ type IAuthLogin = {
 }
 
 export const login = (data: IAuthLogin) => {
-  axios.post(`${process.env.ANGULAR_APP_API_URL}/auth/login`, {
+  return axios.post(`${process.env.ANGULAR_APP_API_URL}/auth/login`, {
     ...data
   })
 }
 
 export const register = (data: IAuthLogin) => {
-  axios.post(`${process.env.ANGULAR_APP_API_URL}/user`, {
+  return axios.post(`${process.env.ANGULAR_APP_API_URL}/user`, {
     ...data
   })
 }

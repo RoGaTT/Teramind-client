@@ -41,7 +41,7 @@ function AuthController($scope, $location, $window) {
         username: $scope.username,
         password: $scope.password
       })
-      $location.path('/uploads')
+      $window.location.href = '#/uploads'
     } catch (e) {
       console.error(e);
     }
