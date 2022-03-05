@@ -154,7 +154,8 @@ module.exports = {
     optimization: optimization(),
     devServer: {
         port: process.env.PORT,
-        hot: isDevelopment
+        hot: isDevelopment,
+        disableHostCheck: true
     },
     devtool: isDevelopment ? 'source-map' : '',
     plugins: plugins(),
