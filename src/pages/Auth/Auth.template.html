@@ -1,0 +1,26 @@
+<div class="auth" ng-controller="AuthController">
+  <input type="text" placeholder="Login" ng-model="username">
+  <input
+    type="password"
+    placeholder="Password"
+    ng-model="password"
+  >
+  <input
+    ng-if="mode === 'sign_up'"
+    type="password"
+    placeholder="Confirm password"
+    ng-model="confirmPassword"
+  >
+
+  <button ng-if="mode === 'sign_in'" ng-click="signIn()">Sign In</button>
+  <p ng-if="mode === 'sign_in'" ng-click="auth()">
+    There is no account yet?
+    <button ng-click="toggleMode()">Sign up</button>
+  </p>
+
+  <button ng-if="mode === 'sign_up'" ng-click="signUp()">Sign Up</button>
+  <p ng-if="mode === 'sign_up'" ng-click="auth()">
+    Already have an account?
+    <button ng-click="toggleMode()">Sign in</button>
+  </p>
+</div>
