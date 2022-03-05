@@ -7,3 +7,11 @@ export const uploadFile = (data: FormData) => {
     data: data
   })
 }
+
+export const getFiles = (data: FormData) => {
+  return axios({
+    method: 'GET',
+    url: `${process.env.ANGULAR_APP_API_URL}/uploads`,
+    data: data
+  })
+}

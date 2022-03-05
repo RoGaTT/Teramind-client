@@ -1,8 +1,8 @@
 import { uploadFile } from "../../api/uploads";
 
-function UploadsController($scope) {
+function UploadsController($scope, $rootScope, $location) {
   this.$onInit = function() {
-    // console.log($element);
+    if (!$rootScope.token) $location.path('/auth')
   }
 
   $scope.upload = function() {

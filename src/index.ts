@@ -17,8 +17,7 @@ AppModule.config([
   '$routeProvider',
   function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('');
-
-    $routeProvider.otherwise({redirectTo: '/auth'});
+    $routeProvider.otherwise({redirectTo: '/auth'})
   }
 ]);
 
