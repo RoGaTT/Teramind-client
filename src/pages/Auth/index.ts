@@ -8,7 +8,7 @@ const AuthModule = angular.module('app.auth', ['ngRoute'])
 
 AuthModule.config(['$routeProvider', AuthConfig])
 
-AuthModule.controller('AuthController', ['$scope', AuthController])
+AuthModule.controller('AuthController', [AuthController])
 
 
 export default AuthModule;
