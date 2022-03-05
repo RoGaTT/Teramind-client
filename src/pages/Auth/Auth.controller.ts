@@ -33,6 +33,7 @@ function AuthController($scope, $location, $rootScope) {
   }
 
   $scope.signUp = async () => {
+    console.log($scope.password, $scope.confirmPassword);
     if ($scope.password !== $scope.confirmPassword) return 
     try {
       await register({
