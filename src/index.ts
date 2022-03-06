@@ -18,7 +18,6 @@ AppModule.config([
   function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider.otherwise({redirectTo: '/auth'})
-    $locationProvider.html5Mode(true)
   }
 ]);
 
