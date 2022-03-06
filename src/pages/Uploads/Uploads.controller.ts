@@ -9,7 +9,7 @@ function UploadsController($scope, $rootScope, $location, $q) {
       getFiles().then(resolve)
     })
     $getFiles.then((res) => {
-      $scope.fileList = res.data.data || []
+      $scope.fileList = res.data || []
     })
   }
 
@@ -34,12 +34,12 @@ function UploadsController($scope, $rootScope, $location, $q) {
       }
     })
     $upload.then((res) => {
-      if (!res.data.isExist) $scope.lastUpload = res.data
+      if (!res.data.isExist) $scope.lastUpload = res.data.data
       const $getFiles = $q((resolve) => {
         getFiles().then(resolve)
       })
       $getFiles.then((res) => {
-        $scope.fileList = res.data.data || []
+        $scope.fileList = res.data || []
       })
     })
 
