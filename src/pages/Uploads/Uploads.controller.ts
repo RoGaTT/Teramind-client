@@ -1,8 +1,15 @@
-import { uploadFile } from "../../api/uploads";
+import { getFiles, uploadFile } from "../../api/uploads";
 
 function UploadsController($scope, $rootScope, $location, $q) {
+  $scope.fileList = []
   this.$onInit = function() {
     if (!$rootScope.token) $location.path('/auth')
+    const $getFiles = $q((resolve) => {
+      getFiles().then(resolve)
+    })
+    $getFiles.then((res) => {
+      $scope.fileList = res.data || []
+    })
   }
 
   $scope.upload = function() {

@@ -3,4 +3,11 @@
     <input type="file" name="uploads_item" id="upload_input">
     <button ng-click="upload()">Upload</button>
   </form>
+  <div class="uploads-list">
+    <div class="uploads-list__item" ng-repeat="file in fileList">
+      <h5>{{file.filename}}</h5>
+      <p>{{file.created_at}}</p>
+      <span>{{file.size}} Byte</span>
+      <a ng-href="/api/uploads/download/{{file.id}}">Download</a></div>
+  </div>
 </div>
