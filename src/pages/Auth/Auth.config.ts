@@ -1,6 +1,8 @@
+import AuthTemplate from './Auth.template.html'
+
 function AuthConfig($routeProvider) {
   $routeProvider.when('/auth', {
-    templateUrl: 'src/pages/Auth/Auth.template.html',
+    template: AuthTemplate,
     controller: 'AuthController'
   });
 }

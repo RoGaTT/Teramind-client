@@ -166,6 +166,12 @@ module.exports = {
                 use: cssLoaders()
             },
             {
+                test: /\.html$/,
+                use: [
+                    'html-loader'
+                ]
+            },
+            {
                 test: /\.s[ac]ss$/,
                 use: cssLoaders('sass-loader')
             },
