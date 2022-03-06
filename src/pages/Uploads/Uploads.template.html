@@ -3,11 +3,20 @@
     <input type="file" name="uploads_item" id="upload_input">
     <button ng-click="upload()">Upload</button>
   </form>
+  <h3 ng-show="!!lastUpload">Just uploaded file</h3>
+  <div class="uploads-list__item" ng-show="!!lastUpload">
+    <h5>{{lastUpload.filename}}</h5>
+    <p>{{lastUpload.created_at}}</p>
+    <span>{{lastUpload.size}} Byte</span>
+    <a ng-href="/api/uploads/download/{{lastUpload.id}}">Download</a>
+  </div>
   <div class="uploads-list">
+    <h3>Upload list</h3>
     <div class="uploads-list__item" ng-repeat="file in fileList">
       <h5>{{file.filename}}</h5>
       <p>{{file.created_at}}</p>
       <span>{{file.size}} Byte</span>
-      <a ng-href="/api/uploads/download/{{file.id}}">Download</a></div>
+      <a ng-href="/api/uploads/download/{{file.id}}">Download</a>
+    </div>
   </div>
 </div>

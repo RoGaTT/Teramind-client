@@ -2,6 +2,7 @@ import { getFiles, uploadFile } from "../../api/uploads";
 
 function UploadsController($scope, $rootScope, $location, $q) {
   $scope.fileList = []
+  $scope.lastUpload = undefined
   this.$onInit = function() {
     if (!$rootScope.token) $location.path('/auth')
     const $getFiles = $q((resolve) => {
@@ -19,11 +20,11 @@ function UploadsController($scope, $rootScope, $location, $q) {
       const file = fileInputElement.files[0];
       if (!file) return
 
+      if (file.size > 5 * 1024 * 1024) return
+
       const fileReader = new FileReader()
-      console.log(file);
       
       fileReader.readAsBinaryString(file)
-      // console.log(file);
       fileReader.onloadend = function(e) {
         const formData = new FormData()
 
@@ -32,9 +33,15 @@ function UploadsController($scope, $rootScope, $location, $q) {
         uploadFile(formData).then(resolve)
       }
     })
-    // $upload.then((res) => {
-    //   $rootScope.token = res.data.token
-    // })
+    $upload.then((res) => {
+      $scope.lastUpload = res.data
+      const $getFiles = $q((resolve) => {
+        getFiles().then(resolve)
+      })
+      $getFiles.then((res) => {
+        $scope.fileList = res.data || []
+      })
+    })
 
     
   }

@@ -1,11 +1,8 @@
-import UploadsTemplate from './Uploads.template.html'
-
 function UploadsConfig($routeProvider, $cookies) {
   $routeProvider.when('/uploads', {
-    template: UploadsTemplate,
+    templateUrl: 'src/pages/Uploads/Uploads.template.html',
     controller: 'UploadsController'
   });
-  console.log($cookies.get);
 }
 
 export default UploadsConfig

@@ -35,7 +35,6 @@ function AuthController($scope, $location, $rootScope, $cookies, $q) {
   }
 
   $scope.signUp = async () => {
-    console.log($scope.confirmPassword);
     if ($scope.password !== $scope.confirmPassword) return 
     try {
       const $register = $q((resolve) => {
